@@ -1,14 +1,36 @@
-# CredResolve Expense Backend
+#  CredResolve Expense Sharing Backend
 
-A Scalable Expense Sharing API built with Python, FastAPI, and SQLAlchemy.
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.95-green)
+![SQLAlchemy](https://img.shields.io/badge/Database-SQLite-lightgrey)
 
-## Features
-- **User & Group Management**
-- **Expense Splitting**: Supports EQUAL, EXACT, and PERCENT splits.
-- **Balance Simplification**: Uses a greedy algorithm to minimize transactions (User A -> User B).
+A scalable backend system for splitting expenses between users and groups. This project implements advanced features like **Exact & Percent splits** and uses a **Greedy Algorithm** to simplify debt settlements (minimizing total transactions).
 
-## Setup Instructions
-1. Clone the repo.
-2. Create a virtual environment:
-   ```bash
-   python -m venv venv
+---
+
+## Key Features
+
+* **User & Group Management**: seamless creation and retrieval.
+* **Expense Splitting**:
+    * `EQUAL`: Split equally among all members.
+    * `EXACT`: Specify exact amounts for each user.
+    * `PERCENT`: Split by percentage share.
+* **Debt Simplification**: An optimized algorithm to resolve debts. Instead of `A->B` and `B->C`, the system resolves `A->C` directly.
+* **Data Validation**: Powered by Pydantic schemas.
+
+---
+
+##  Project Structure
+
+```bash
+src/
+├── routers/
+│   ├── users.py       # User management endpoints
+│   ├── groups.py      # Group creation & Balance logic
+│   └── expenses.py    # Expense adding logic
+├── services/
+│   └── expense_service.py  # Core business logic for splits
+├── models.py          # Database Tables (SQLAlchemy)
+├── schemas.py         # Pydantic Data Models
+├── database.py        # DB Connection setup
+└── main.py            # Entry point
